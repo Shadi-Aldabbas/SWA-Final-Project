@@ -16,7 +16,8 @@ public class DBOperationRunner implements CommandLineRunner {
     @Autowired
     private UserRepo userRepo;
 
-
+//    @Autowired
+//    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,7 +26,9 @@ public class DBOperationRunner implements CommandLineRunner {
 
         User admin = new User();
         admin.setEmail("admin@admin.com");
+//        String encodedPassword = bCryptPasswordEncoder.encode("1");
         admin.setPassword("1");
+
         admin.setRoles("ADMIN");
         admin.setId(UUID.randomUUID());
         User normal = new User();

@@ -7,3 +7,6 @@ spring:
       entity-base-package: com.SWAFinalProject.AuthService.entity
       schema-action: create_if_not_exists
 
+app:
+  jwtSecret : very-secret
+  jwtExpiration : 1080000

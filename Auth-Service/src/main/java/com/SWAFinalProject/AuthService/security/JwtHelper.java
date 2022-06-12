@@ -1,6 +1,8 @@
 package com.SWAFinalProject.AuthService.security;
 
+import com.SWAFinalProject.AuthService.entity.User;
 import io.jsonwebtoken.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -8,12 +10,17 @@ import java.util.Map;
 
 @Component
 public class JwtHelper {
-    private final String secret = "top-secret";
-    private final long expirataion = 5 * 60 * 60 * 60;
-    // private final long expirataion = 5;
 
-    public String generateToken(String email) {
+    @Value("${app.jwtSecret}")
+    private String secret;
+    @Value("${app.jwtExpiration}")
+    private long expirataion;
+
+    public String generateToken(String email, User user) {
+        System.out.println(secret);
+        System.out.println(expirataion);
         return Jwts.builder()
+                .claim("user", user)
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirataion))

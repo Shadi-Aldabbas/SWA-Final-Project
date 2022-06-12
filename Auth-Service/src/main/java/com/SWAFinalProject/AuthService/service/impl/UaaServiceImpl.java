@@ -1,12 +1,15 @@
 package com.SWAFinalProject.AuthService.service.impl;
 
+import com.SWAFinalProject.AuthService.entity.User;
 import com.SWAFinalProject.AuthService.model.LoginRequest;
 import com.SWAFinalProject.AuthService.model.LoginResponse;
 import com.SWAFinalProject.AuthService.model.RefreshTokenRequest;
+import com.SWAFinalProject.AuthService.repository.UserRepo;
 import com.SWAFinalProject.AuthService.security.JwtHelper;
 import com.SWAFinalProject.AuthService.service.UaaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,6 +23,9 @@ public class UaaServiceImpl implements UaaService {
     private final AuthenticationManager authenticationManager;
     private final JwtHelper jwtHelper;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
         try {
@@ -31,7 +37,7 @@ public class UaaServiceImpl implements UaaService {
             log.info("Bad Credentials");
         }
 
-        final String accessToken = jwtHelper.generateToken(loginRequest.getEmail());
+        final String accessToken = jwtHelper.generateToken(loginRequest.getEmail(),userRepo.findByEmail(loginRequest.getEmail()));
         final String refreshToken = jwtHelper.generateRefreshToken(loginRequest.getEmail());
         var loginResponse = new LoginResponse(accessToken, refreshToken);
         return loginResponse;
@@ -42,7 +48,7 @@ public class UaaServiceImpl implements UaaService {
     public LoginResponse refreshToken(RefreshTokenRequest refreshTokenRequest) {
         boolean isRefreshTokenValid = jwtHelper.validateToken(refreshTokenRequest.getRefreshToken());
         if (isRefreshTokenValid) {
-            final String accessToken = jwtHelper.generateToken(jwtHelper.getSubject(refreshTokenRequest.getRefreshToken()));
+            final String accessToken = jwtHelper.generateToken(jwtHelper.getSubject(refreshTokenRequest.getRefreshToken()), new User());
             var loginResponse = new LoginResponse(accessToken, refreshTokenRequest.getRefreshToken());
             return loginResponse;
         }

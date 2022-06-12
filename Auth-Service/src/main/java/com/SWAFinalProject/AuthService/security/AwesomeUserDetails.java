@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AwesomeUserDetails implements UserDetails {
 
@@ -28,8 +29,11 @@ public class AwesomeUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        list.add(new SimpleGrantedAuthority(roles));
+        list.add(new SimpleGrantedAuthority("ROLE_" +roles));
         return list;
+//        return roles.stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getRole()))
+//                .collect(Collectors.toList());
     }
 
     @Override
