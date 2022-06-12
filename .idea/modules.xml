@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Auth-Service/Auth-Service.iml" filepath="$PROJECT_DIR$/Auth-Service/Auth-Service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SWA-Final-Project.iml" filepath="$PROJECT_DIR$/.idea/SWA-Final-Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/answer-service/answer-service.iml" filepath="$PROJECT_DIR$/answer-service/answer-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/email-notification-service/email-notification-service.iml" filepath="$PROJECT_DIR$/email-notification-service/email-notification-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/question-service/question-service.iml" filepath="$PROJECT_DIR$/question-service/question-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/user-service/user-service.iml" filepath="$PROJECT_DIR$/user-service/user-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vote-service/vote-service.iml" filepath="$PROJECT_DIR$/vote-service/vote-service.iml" />
+    </modules>
+  </component>
+</project>
