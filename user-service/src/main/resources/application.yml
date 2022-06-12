@@ -1,7 +1,7 @@
 spring:
-data:
-cassandra:
-port: 9042
-contact-points: mycassandra1
-keyspace-name: mykeyspace
-entity-base-package: com.cassandra.cassandra.model
+  data:
+  cassandra:
+  port: 9042
+  contact-points: mycassandra
+  keyspace-name: mykeyspace
+  entity-base-package: com.cassandra.cassandra.model
