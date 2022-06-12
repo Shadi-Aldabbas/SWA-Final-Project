@@ -1,6 +1,5 @@
 package com.SWAFinalProject.AuthService.security;
 
-import com.SWAFinalProject.AuthService.entity.Role;
 import com.SWAFinalProject.AuthService.entity.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -8,10 +7,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class AwesomeUserDetails implements UserDetails {
 
