@@ -1,23 +1,21 @@
-package com.SWAFinalProject.userservice.controller;
+package com.cassandra.SWAFinalProject.controller;
 
-import com.SWAFinalProject.userservice.model.User;
-import com.SWAFinalProject.userservice.service.UserService;
+import com.cassandra.SWAFinalProject.model.User;
+import com.cassandra.SWAFinalProject.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
 @RestController
 @RequestMapping("/users")
 public class UserController {
-
     @Autowired
     private UserService userService;
 
     @PostMapping
     public ResponseEntity<User> saveUser(@RequestBody User user) {
-       return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
+        return new ResponseEntity<>(userService.saveUser(user), HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -42,6 +40,5 @@ public class UserController {
         userService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }

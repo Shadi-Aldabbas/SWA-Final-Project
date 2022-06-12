@@ -1,6 +1,6 @@
-package com.SWAFinalProject.userservice.service;
+package com.cassandra.SWAFinalProject.service;
 
-import com.SWAFinalProject.userservice.model.User;
+import com.cassandra.SWAFinalProject.model.User;
 
 import java.util.List;
 

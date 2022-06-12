@@ -1,12 +1,13 @@
-package com.SWAFinalProject.userservice.service.impl;
-import com.SWAFinalProject.userservice.model.User;
-import com.SWAFinalProject.userservice.repository.UserRepository;
-import com.SWAFinalProject.userservice.service.UserService;
+package com.cassandra.SWAFinalProject.service.impl;
+import com.cassandra.SWAFinalProject.repository.UserRepository;
+import com.cassandra.SWAFinalProject.service.UserService;
+import com.cassandra.SWAFinalProject.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
