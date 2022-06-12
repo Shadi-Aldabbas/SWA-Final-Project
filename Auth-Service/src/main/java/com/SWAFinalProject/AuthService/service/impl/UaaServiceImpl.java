@@ -3,7 +3,6 @@ package com.SWAFinalProject.AuthService.service.impl;
 import com.SWAFinalProject.AuthService.model.LoginRequest;
 import com.SWAFinalProject.AuthService.model.LoginResponse;
 import com.SWAFinalProject.AuthService.model.RefreshTokenRequest;
-import com.SWAFinalProject.AuthService.repository.UserRepo;
 import com.SWAFinalProject.AuthService.security.JwtHelper;
 import com.SWAFinalProject.AuthService.service.UaaService;
 import lombok.RequiredArgsConstructor;
@@ -11,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
