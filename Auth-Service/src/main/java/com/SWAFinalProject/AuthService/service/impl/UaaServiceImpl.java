@@ -23,8 +23,8 @@ public class UaaServiceImpl implements UaaService {
     private final AuthenticationManager authenticationManager;
     private final JwtHelper jwtHelper;
 
-    @Autowired
-    private UserRepo userRepo;
+    private final UserRepo userRepo;
+
 
     @Override
     public LoginResponse login(LoginRequest loginRequest) {
@@ -37,7 +37,7 @@ public class UaaServiceImpl implements UaaService {
             log.info("Bad Credentials");
         }
 
-        final String accessToken = jwtHelper.generateToken(loginRequest.getEmail(),userRepo.findByEmail(loginRequest.getEmail()));
+        final String accessToken = jwtHelper.generateToken(loginRequest.getEmail(),userRepo.findByEmailAddress(loginRequest.getEmail()));
         final String refreshToken = jwtHelper.generateRefreshToken(loginRequest.getEmail());
         var loginResponse = new LoginResponse(accessToken, refreshToken);
         return loginResponse;

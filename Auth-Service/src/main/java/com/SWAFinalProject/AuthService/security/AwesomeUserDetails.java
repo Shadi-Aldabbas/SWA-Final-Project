@@ -18,10 +18,10 @@ public class AwesomeUserDetails implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private String roles;
+    private List<String> roles;
 
     public AwesomeUserDetails(User user) {
-        this.email = user.getEmail();
+        this.email = user.getEmailAddress();
         this.password = user.getPassword();
         this.roles = user.getRoles();
     }
@@ -29,7 +29,9 @@ public class AwesomeUserDetails implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> list = new ArrayList<GrantedAuthority>();
-        list.add(new SimpleGrantedAuthority("ROLE_" +roles));
+        for(String role : roles){
+            list.add(new SimpleGrantedAuthority("ROLE_" +roles));
+        }
         return list;
 //        return roles.stream()
 //                .map(role -> new SimpleGrantedAuthority(role.getRole()))

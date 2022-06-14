@@ -1,12 +1,16 @@
 package com.SWAFinalProject.AuthService.runner;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import com.SWAFinalProject.AuthService.entity.User;
 import com.SWAFinalProject.AuthService.repository.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 
@@ -16,8 +20,8 @@ public class DBOperationRunner implements CommandLineRunner {
     @Autowired
     private UserRepo userRepo;
 
-//    @Autowired
-//    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -25,17 +29,22 @@ public class DBOperationRunner implements CommandLineRunner {
 
 
         User admin = new User();
-        admin.setEmail("admin@admin.com");
-//        String encodedPassword = bCryptPasswordEncoder.encode("1");
-        admin.setPassword("1");
+        admin.setEmailAddress("admin@admin.com");
+        String encodedPassword = passwordEncoder.encode("1");
+        admin.setPassword(encodedPassword);
+        List<String> adminRole = new ArrayList<>();
+        adminRole.add("ADMIN");
+        admin.setRoles(adminRole);
+        admin.setUserId(UUID.randomUUID());
 
-        admin.setRoles("ADMIN");
-        admin.setId(UUID.randomUUID());
+
         User normal = new User();
-        normal.setEmail("normal@normal.com");
-        normal.setId(UUID.randomUUID());
-        normal.setRoles("NORMAL");
-        normal.setPassword("1");
+        normal.setEmailAddress("normal@normal.com");
+        normal.setUserId(UUID.randomUUID());
+        List<String> normalRole = new ArrayList<>();
+        normalRole.add("NORMAL");
+        normal.setRoles(normalRole);
+        normal.setPassword(encodedPassword);
 
         userRepo.saveAll(Arrays.asList(
                 admin,normal

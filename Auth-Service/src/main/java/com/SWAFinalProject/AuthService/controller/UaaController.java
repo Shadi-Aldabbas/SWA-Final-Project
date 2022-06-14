@@ -19,13 +19,9 @@ public class UaaController {
         this.uaaService = uaaService;
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test work";
-    }
-
     @PostMapping
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+
         var loginResponse = uaaService.login(loginRequest);
         return ResponseEntity.ok().body(loginResponse);
     }

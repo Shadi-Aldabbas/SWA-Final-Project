@@ -8,6 +8,7 @@ import org.springframework.data.cassandra.core.mapping.*;
 import org.springframework.data.cassandra.core.mapping.Table;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.UUID;
 
 @Table("users")
@@ -17,12 +18,10 @@ import java.util.UUID;
 public class User implements Serializable {
 
     @PrimaryKey
-    private UUID id;
-
-    private String email;
+    private UUID userId;
+    private String name;
+    private String userName;
+    private String emailAddress;
     private String password;
-    private String firstname;
-    private String lastname;
-
-    private String roles;
+    private List<String> roles;
 }
