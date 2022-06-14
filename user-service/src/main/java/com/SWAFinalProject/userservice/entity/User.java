@@ -1,9 +1,13 @@
-package com.SWAFinalProject.userservice.model;
+package com.SWAFinalProject.userservice.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.cassandra.core.mapping.PrimaryKey;
 import org.springframework.data.cassandra.core.mapping.Table;
+
+import java.util.List;
+import java.util.UUID;
 
 @Table
 @Data
@@ -11,12 +15,11 @@ import org.springframework.data.cassandra.core.mapping.Table;
 @AllArgsConstructor
 public class User {
 
-    private String userId;
+    @PrimaryKey
+    private UUID userId;
     private String name;
     private String userName;
     private String emailAddress;
     private String password;
-    private String role;
+    private List<String> roles;
 }
-
-

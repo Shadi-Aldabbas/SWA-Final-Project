@@ -1,10 +1,10 @@
-package com.SWAFinalProject.userservice;
+package com.cassandra.cassandra;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UserServiceApplicationTests {
+class CassandraApplicationTests {
 
 	@Test
 	void contextLoads() {
