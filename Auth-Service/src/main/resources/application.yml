@@ -10,3 +10,5 @@ spring:
 app:
   jwtSecret : very-secret
   jwtExpiration : 1080000
+server:
+  port : 9001

@@ -54,4 +54,9 @@ public class UaaServiceImpl implements UaaService {
         }
         return new LoginResponse();
     }
+
+//    @Override
+//    public User findByEmailAddress(String emailAddress) {
+//        return userRepo.findByEmailAddress(emailAddress);
+//    }
 }

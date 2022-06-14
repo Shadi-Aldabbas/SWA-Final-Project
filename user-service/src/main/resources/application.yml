@@ -5,9 +5,10 @@ spring:
     cassandra:
       port: 9042
       contact-points: mycassandra
-      keyspace-name: mykeyspace
+      keyspace-name: userKeySpace
       entity-base-package: com.SWAFinalProject.userservice.entity
       schema-action: create_if_not_exists
-
+server:
+  port : 9002
 
 
