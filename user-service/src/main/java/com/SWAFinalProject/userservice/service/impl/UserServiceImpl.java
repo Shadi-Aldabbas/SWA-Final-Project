@@ -25,16 +25,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     KafkaTemplate<String, List<String>> kafkaTemplate;
 
-    private static final String TOPIC = "myTopicName";
+    private static final String TOPIC = "user";
 
 
     @Override
     public User findById(UUID id) {
-//        TODO
-//        String encodedPassword = passwordEncoder. (user.getPassword());
-//        user.setPassword(encodedPassword);
         return userRepository.findById(id).orElseThrow(() -> {
-            throw new NoContentFoundException("User Not Found sorry");
+            throw new NoContentFoundException("User Not Found");
         });
     }
 
@@ -58,10 +55,10 @@ public class UserServiceImpl implements UserService {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         User createdUser = userRepository.save(user);
-        List<String> userIdAndEmail = new ArrayList<>();
-        userIdAndEmail.add(user.getUserId().toString());
-        userIdAndEmail.add(user.getEmailAddress());
-        kafkaTemplate.send(TOPIC, userIdAndEmail);
+        List<String> userNameAndEmail = new ArrayList<>();
+        userNameAndEmail.add(user.getUserName());
+        userNameAndEmail.add(user.getEmailAddress());
+        kafkaTemplate.send(TOPIC, userNameAndEmail);
         return createdUser;
     }
 
