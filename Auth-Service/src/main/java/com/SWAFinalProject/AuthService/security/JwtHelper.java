@@ -1,6 +1,7 @@
 package com.SWAFinalProject.AuthService.security;
 
 import com.SWAFinalProject.AuthService.entity.User;
+import com.SWAFinalProject.AuthService.model.JWTUserInfo;
 import io.jsonwebtoken.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -17,10 +18,11 @@ public class JwtHelper {
     private long expirataion;
 
     public String generateToken(String email, User user) {
+        JWTUserInfo jwtUserInfo = new JWTUserInfo(user.getUserId(),user.getName(),user.getUserName(),user.getEmailAddress(),user.getRoles());
         System.out.println(secret);
         System.out.println(expirataion);
         return Jwts.builder()
-                .claim("user", user)
+                .claim("user", jwtUserInfo)
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expirataion))

@@ -9,7 +9,7 @@ import org.springframework.data.cassandra.core.mapping.Table;
 import java.util.List;
 import java.util.UUID;
 
-@Table
+@Table("user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

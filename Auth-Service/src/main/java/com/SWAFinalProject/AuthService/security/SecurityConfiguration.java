@@ -33,8 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v1/uaa").permitAll()
-                .antMatchers("/api/v1/uaa/*").permitAll()
+                .antMatchers("/api/login").permitAll()
 //                .antMatchers("/api/v1/job").hasAuthority("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -52,8 +51,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return super.authenticationManagerBean();
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 }

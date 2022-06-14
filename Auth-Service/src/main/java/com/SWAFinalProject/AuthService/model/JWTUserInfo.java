@@ -1,26 +1,19 @@
-package com.SWAFinalProject.AuthService.entity;
+package com.SWAFinalProject.AuthService.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.cassandra.core.mapping.*;
-import org.springframework.data.cassandra.core.mapping.Table;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
-@Table("user")
 @Data
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class User implements Serializable {
-
-    @PrimaryKey
+public class JWTUserInfo {
     private UUID userId;
     private String name;
     private String userName;
     private String emailAddress;
-    private String password;
     private List<String> roles;
 }

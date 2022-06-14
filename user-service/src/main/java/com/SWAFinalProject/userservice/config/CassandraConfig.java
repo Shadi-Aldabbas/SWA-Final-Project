@@ -13,7 +13,7 @@ import java.util.List;
 @Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
-    public static final String KEYSAPCE = "mykeyspace";
+    public static final String KEYSAPCE = "userKeySpace";
 
     @Override
     public String getKeyspaceName() {
@@ -42,9 +42,9 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
 
-    // IDK why
+    // to create the table from entity folder
     @Override
     public String[] getEntityBasePackages() {
-        return new String[]{"com.SWAFinalProject.AuthService.entity"};
+        return new String[]{"com.SWAFinalProject.userservice.entity"};
     }
 }

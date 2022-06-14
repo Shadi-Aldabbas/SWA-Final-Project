@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("api/v1/uaa")
+@RequestMapping("api")
 @CrossOrigin
 public class UaaController {
 
@@ -19,13 +19,9 @@ public class UaaController {
         this.uaaService = uaaService;
     }
 
-    @GetMapping("/test")
-    public String test() {
-        return "test work";
-    }
-
-    @PostMapping
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
+
         var loginResponse = uaaService.login(loginRequest);
         return ResponseEntity.ok().body(loginResponse);
     }
