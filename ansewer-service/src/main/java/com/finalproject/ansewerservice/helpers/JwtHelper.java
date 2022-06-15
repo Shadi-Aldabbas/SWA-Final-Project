@@ -8,7 +8,7 @@ import java.util.Date;
 
 
 public class JwtHelper {
-    private final String secret = "top-secret";
+    private final String secret = "very-secret";
     private final long expirataion = 5 * 60 * 60 * 60;
 
 
