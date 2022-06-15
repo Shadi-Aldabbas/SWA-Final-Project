@@ -30,7 +30,7 @@ public class AnswerController {
     @PostMapping
     public ResponseEntity<?> add(@RequestBody Answer answer,@RequestHeader (name="Authorization") String token){
         logger.info("add answer - progress started");
-        var loUser = jwt.getUserFromToken(jwt.parseToken(token));
+        var loUser = jwt.getUserFromToken(token);
         answer.setUser_id(loUser.getUserId());
        var result = answerService.add(answer, loUser);
        if(result.getId() != null){
@@ -48,24 +48,30 @@ public class AnswerController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Answer answer){
-        var loAnswer = answerService.getById(id);
-        if(loAnswer.getId() == null){
-            return ResponseEntity.ok(new GenericResponse("Answer not found", -1,false));
-        }
-        loAnswer.setDescription(answer.getDescription());
-        var result = answerService.update(loAnswer);
+    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Answer answer,@RequestHeader (name="Authorization") String token){
+        if(jwt.validateToken(token) && jwt.getUserFromToken(token).getUserId()!=null){
+            var loAnswer = answerService.getById(id);
+            if(loAnswer.getId() == null){
+                return ResponseEntity.ok(new GenericResponse("Answer not found", -1,false));
+            }
+            loAnswer.setDescription(answer.getDescription());
+            var result = answerService.update(loAnswer);
 
-        return ResponseEntity.ok(new GenericResponse("Answer has been updated!", 200,result));
+            return ResponseEntity.ok(new GenericResponse("Answer has been updated!", 200,result));
+        }
+        return ResponseEntity.status(401).body(new GenericResponse("Authorization Error", 401,null));
+
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable String id){
-
-        if(answerService.deleteByID(id)){
-            return ResponseEntity.ok(new GenericResponse("Answer has been deleted successfully", 200,true));
+    public ResponseEntity<?> deleteById(@PathVariable String id,@RequestHeader (name="Authorization") String token){
+        if(jwt.validateToken(token) && jwt.getUserFromToken(token).getUserId()!=null){
+            if(answerService.deleteByID(id)){
+                return ResponseEntity.ok(new GenericResponse("Answer has been deleted successfully", 200,true));
+            }
+            return ResponseEntity.ok(new GenericResponse("Answer can not be deleted. Try again", -1,false));
         }
-        return ResponseEntity.ok(new GenericResponse("Answer can not be deleted. Try again", -1,false));
+        return ResponseEntity.status(401).body(new GenericResponse("Authorization Error", 401,null));
     }
 
 
@@ -90,7 +96,6 @@ public class AnswerController {
 
         return ResponseEntity.badRequest().body(new GenericResponse("No answer found for ",-1,null));
     }
-
 
 
 }

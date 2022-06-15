@@ -23,10 +23,11 @@ public class JwtHelper {
                 .compact();
     }
     public boolean validateToken(String token) {
+        var tkn = parseToken(token);
         try {
             Jwts.parser()
                     .setSigningKey(secret)
-                    .parseClaimsJws(token);
+                    .parseClaimsJws(tkn);
             return true;
         } catch (SignatureException e) {
             System.out.println(e.getMessage());
@@ -47,18 +48,23 @@ public class JwtHelper {
     }
 
     public String getSubject(String token) {
+        var tkn = parseToken(token);
         return Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJws(token)
+                .parseClaimsJws(tkn)
                 .getBody()
                 .getSubject();
     }
     public UserDto getUserFromToken(String token) {
+        var tkn = token;
+        if(token.split(" ").length > 1){
+            tkn = parseToken(token);
+        }
 
         ObjectMapper mapper = new ObjectMapper();
         Object claim = Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJws(token).getBody().get("user");
+                .parseClaimsJws(tkn).getBody().get("user");
 
         var result = mapper.convertValue(claim,UserDto.class);
         return result;
