@@ -10,15 +10,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class AuthServiceApplicationTests {
 
-	@Autowired
-	private UaaService uaaService;
-
-	@Autowired
-	private UserRepo userRepo;
-
-	public void Login(){
-
-
-	}
+//	@Autowired
+//	private UaaService uaaService;
+//
+//	@Autowired
+//	private UserRepo userRepo;
+//
+//	public void Login(){
+//
+//
+//	}
 
 }
