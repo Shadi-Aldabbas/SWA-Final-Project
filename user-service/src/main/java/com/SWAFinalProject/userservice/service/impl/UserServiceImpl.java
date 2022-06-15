@@ -1,7 +1,6 @@
 package com.SWAFinalProject.userservice.service.impl;
 
-import com.SWAFinalProject.userservice.exception.BadRequestException;
-import com.SWAFinalProject.userservice.exception.DataDuplicationException;
+import com.SWAFinalProject.userservice.dto.UserDTO;
 import com.SWAFinalProject.userservice.exception.NoContentFoundException;
 import com.SWAFinalProject.userservice.repository.UserRepository;
 import com.SWAFinalProject.userservice.service.UserService;
@@ -14,13 +13,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import static org.springframework.http.HttpHeaders.AUTHORIZATION;
-
-import javax.crypto.spec.SecretKeySpec;
-import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-
-//import static io.jsonwebtoken.SignatureAlgorithm.HS512;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -75,7 +68,7 @@ public class UserServiceImpl implements UserService {
             ObjectMapper mapper = new ObjectMapper();
 
             //JSON file to Java object
-            User allowedUser = mapper.readValue(payload, User.class);
+            UserDTO allowedUser = mapper.readValue(payload, UserDTO.class);
             if (allowedUser.getUserId() == user.getUserId()) {
 
                 User foundUser = userRepository.findById(id).map(u -> {
