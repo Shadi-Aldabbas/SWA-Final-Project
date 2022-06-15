@@ -1,0 +1,15 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  data:
+    cassandra:
+      port: 9043
+      contact-points: myqcassandra
+      keyspace-name: myqkeyspace
+      entity-base-package: com.finalproject.questionsservice.Entity
+      schema-action: create_if_not_exists
+server:
+  port: 8081
+
+
+

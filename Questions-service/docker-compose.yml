@@ -1,0 +1,7 @@
+version: '3.1'
+services:
+  myqcassandra:
+    image: cassandra
+    container_name: myqcassandra
+    ports:
+      - "9043:9043"

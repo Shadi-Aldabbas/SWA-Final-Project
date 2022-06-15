@@ -1,0 +1,10 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  data:
+    cassandra:
+      port: 9042
+      contact-points: mycassandra
+      keyspace-name: mykeyspace
+      entity-base-package: com.finalproject.ansewerservice.model
+      schema-action: recreate
