@@ -1,14 +1,18 @@
 spring:
   kafka:
-    bootstrap-servers: localhost:9092
+#    bootstrap-servers: host.docker.internal
+    bootstrap-servers: host.docker.internal:9093
   data:
     cassandra:
       port: 9042
       contact-points: mycassandra
-      keyspace-name: userKeySpace
-      entity-base-package: com.SWAFinalProject.userservice.entity
-      schema-action: create_if_not_exists
+#      keyspace-name: userKeySpace
+#      entity-base-package: com.SWAFinalProject.userservice.entity
+#      schema-action: create_if_not_exists
 server:
   port : 9002
+  error:
+    include-message: always
+
 
 

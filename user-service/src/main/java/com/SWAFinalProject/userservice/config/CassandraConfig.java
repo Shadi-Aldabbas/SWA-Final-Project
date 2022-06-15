@@ -47,4 +47,9 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     public String[] getEntityBasePackages() {
         return new String[]{"com.SWAFinalProject.userservice.entity"};
     }
+
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
+    }
 }

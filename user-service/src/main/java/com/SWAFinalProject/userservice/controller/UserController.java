@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -38,8 +39,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody User user) throws Exception {
-        return new ResponseEntity<>(userService.update(user, id), HttpStatus.OK);
+    public ResponseEntity<?> update(@PathVariable UUID id, @RequestBody User user, @RequestHeader("Authorization") String token) throws Exception {
+        userService.update(user, id, token);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
 
     @DeleteMapping("/{id}")
