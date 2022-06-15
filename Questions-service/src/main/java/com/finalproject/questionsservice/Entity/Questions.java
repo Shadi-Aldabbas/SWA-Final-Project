@@ -16,6 +16,7 @@ import java.util.UUID;
 public class Questions {
     @PrimaryKey
     private String id = UUID.randomUUID().toString();
+    private String user_id;
 
     @Indexed
 

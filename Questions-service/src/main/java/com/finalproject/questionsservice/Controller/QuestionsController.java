@@ -1,18 +1,11 @@
 package com.finalproject.questionsservice.Controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.finalproject.questionsservice.Entity.GenericRequest;
 import com.finalproject.questionsservice.Entity.GenericResponse;
 import com.finalproject.questionsservice.Entity.Questions;
 import com.finalproject.questionsservice.Helpers.JwtHelper;
 import com.finalproject.questionsservice.Service.QuestionsService;
-import com.finalproject.questionsservice.dto.AnswerDto;
 import com.finalproject.questionsservice.dto.QuestionResultDto;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -36,9 +29,20 @@ public class QuestionsController {
     private String answerUrl = "http://localhost:8080/api/v1/answers";
 
     @PostMapping
-    public ResponseEntity<?> save(@RequestBody Questions questions){
-        Questions qt = questionsService.addQuestions(questions);
-        return ResponseEntity.ok( new GenericResponse("Added Question Succesfully", 200, qt));
+    public ResponseEntity<?> save(@RequestBody Questions questions,@RequestHeader (name="Authorization") String token){
+
+        if(jwt.validateToken(token)){
+            var loUser= jwt.getUserFromToken(token);
+            if(loUser.getUserId() != null){
+                questions.setUser_id(loUser.getUserId());
+                Questions qt = questionsService.addQuestions(questions);
+                return ResponseEntity.ok( new GenericResponse("Added Question Successfully", 200, qt));
+            }
+            return ResponseEntity.status(401).body(new GenericResponse("User not found!", 404, null));
+        }else{
+            return ResponseEntity.status(401).body(new GenericResponse("Authorization Error", 401, null));
+        }
+
     }
 
     @GetMapping
@@ -84,33 +88,33 @@ public class QuestionsController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Questions questions){
-        Questions qt = questionsService.getQuestionsById(id);
-        if(qt.getId()== null){
-            return ResponseEntity.badRequest().body(new GenericResponse("Question NOT Found", -1, null));
+    public ResponseEntity<?> update(@PathVariable String id, @RequestBody Questions questions,@RequestHeader (name="Authorization") String token){
+        if(jwt.validateToken(token) && jwt.getUserFromToken(token).getUserId() != null){
+            Questions qt = questionsService.getQuestionsById(id);
+            if(qt.getId()== null){
+                return ResponseEntity.badRequest().body(new GenericResponse("Question NOT Found", -1, null));
+            }
+            qt.setDescription(questions.getDescription());
+            questionsService.updateQuestions(qt);
+            return ResponseEntity.ok(new GenericResponse("Question updated succesfully", 200, qt));
+        }else{
+
+            return ResponseEntity.status(401).body(new GenericResponse("Authorization Error", 401, null));
         }
-        qt.setDescription(questions.getDescription());
-        questionsService.updateQuestions(qt);
-        return ResponseEntity.ok(new GenericResponse("Question updated succesfully", 200, qt));
+
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteById(@PathVariable String id){
-        Boolean qt = questionsService.deleteQuestionsById(id);
-        if(qt){
-            return ResponseEntity.ok(new GenericResponse("Question deleted succesfully", 200, null));
+    public ResponseEntity<?> deleteById(@PathVariable String id,@RequestHeader (name="Authorization") String token){
+        if(jwt.validateToken(token) && jwt.getUserFromToken(token).getUserId() != null){
+            Boolean qt = questionsService.deleteQuestionsById(id);
+            if(qt){
+                return ResponseEntity.ok(new GenericResponse("Question deleted succesfully", 200, null));
+            }
+            return ResponseEntity.ok(new GenericResponse("Failed", -1, null));
         }
-        return ResponseEntity.ok(new GenericResponse("Failed", -1, null));
+
+        return ResponseEntity.status(401).body(new GenericResponse("Authorization Error", 401, null));
     }
 
 }
-
-
-
-
-
-
-
-
-
-

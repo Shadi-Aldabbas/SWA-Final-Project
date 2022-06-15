@@ -8,7 +8,7 @@ import com.finalproject.questionsservice.dto.TokenDto;
 import io.jsonwebtoken.*;
 public class JwtHelper {
 
-    private final String secret = "top-secret";
+    private final String secret = "very-secret";
     private final long expirataion = 5 * 60 * 60 * 60;
 
     public String generateToken(String email, TokenDto tokenDto){
@@ -22,10 +22,11 @@ public class JwtHelper {
     }
 
     public boolean validateToken(String token) {
+        var tkn = parseToken(token);
         try {
             Jwts.parser()
                     .setSigningKey(secret)
-                    .parseClaimsJws(token);
+                    .parseClaimsJws(tkn);
             return true;
         } catch (SignatureException e) {
             System.out.println(e.getMessage());
@@ -41,9 +42,9 @@ public class JwtHelper {
         return false;
     }
 
-   public String parseToken(String token) {
-        return token.split("")[1];
-   }
+    public String parseToken(String token) {
+        return token.split(" ")[1];
+    }
 
     public String getSubject(String token){
         return Jwts.parser()
@@ -54,10 +55,11 @@ public class JwtHelper {
     }
 
     public TokenDto getUserFromToken(String token){
+        var tkn = parseToken(token);
         ObjectMapper mapper= new ObjectMapper();
         Object claim = Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJws(token).getBody().get("user");
+                .parseClaimsJws(tkn).getBody().get("user");
 
         var result = mapper.convertValue(claim, TokenDto.class);
         return result;
