@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.Voting</groupId>
-	<artifactId>Voting</artifactId>
+	<artifactId>voting-service</artifactId>
 	<version>0.0.1</version>
-	<name>Voting</name>
-	<description>Demo project for Spring Boot</description>
+	<name>voting-service</name>
+	<description>voting-service</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>

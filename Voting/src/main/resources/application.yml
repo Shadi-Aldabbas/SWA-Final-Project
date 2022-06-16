@@ -1,6 +1,6 @@
 spring:
-#  kafka:
-#    bootstrap-servers: localhost:9094
+  application:
+    name: VOTING-SERVICE
   data:
     cassandra:
       port: 9042
@@ -9,4 +9,4 @@ spring:
       entity-base-package: com.Voting.Voting.entity
       schema-action: create_if_not_exists
 server:
-  port : 9004
+  port: 8082

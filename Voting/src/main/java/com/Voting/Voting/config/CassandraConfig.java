@@ -1,5 +1,6 @@
 package com.Voting.Voting.config;
-
+import lombok.Value;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
@@ -9,15 +10,15 @@ import org.springframework.data.cassandra.core.cql.keyspace.KeyspaceOption;
 import java.util.Arrays;
 import java.util.List;
 
+@Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
-    public static final String KEYSAPCE = "mykeyspace";//name for my keyspace-name(yml)
+    public static final String KEYSAPCE = "mykeyspace";
 
     @Override
     public String getKeyspaceName() {
         return KEYSAPCE;
     }
-
     //    to create the table if not exist
     @Override
     public SchemaAction getSchemaAction() {
@@ -39,10 +40,14 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         return Arrays.asList(DropKeyspaceSpecification.dropKeyspace(KEYSAPCE));
     }
 
-
     // to create the table from entity folder
     @Override
     public String[] getEntityBasePackages() {
         return new String[]{"com.Voting.Voting.entity"};
+    }
+
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
     }
 }
