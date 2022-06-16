@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: email-notification-service
-          image: dailycodebuffer/user-service:0.0.1
+          image: email-notification-service:0.0.1
           imagePullPolicy: Always
           ports:
             - containerPort: 8089
