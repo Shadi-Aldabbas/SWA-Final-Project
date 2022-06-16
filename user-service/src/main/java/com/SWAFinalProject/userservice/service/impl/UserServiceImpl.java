@@ -1,12 +1,9 @@
 package com.SWAFinalProject.userservice.service.impl;
 
-import com.SWAFinalProject.userservice.dto.UserDTO;
 import com.SWAFinalProject.userservice.exception.NoContentFoundException;
 import com.SWAFinalProject.userservice.repository.UserRepository;
 import com.SWAFinalProject.userservice.service.UserService;
 import com.SWAFinalProject.userservice.entity.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -25,7 +22,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     KafkaTemplate<String, List<String>> kafkaTemplate;
 
-    private static final String TOPIC = "user";
+    private static final String TOPIC = "user1";
 
 
     @Override
@@ -60,33 +57,21 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void update(User user, UUID id, String token) throws JsonProcessingException {
-        if (token != null) {
-            String[] chunks = token.split("\\.");
-            Base64.Decoder decoder = Base64.getUrlDecoder();
-            String payload = new String(decoder.decode(chunks[1]));
-            ObjectMapper mapper = new ObjectMapper();
+    public User update(User user, UUID id) {
 
-            //JSON file to Java object
-            UserDTO allowedUser = mapper.readValue(payload, UserDTO.class);
-            if (allowedUser.getUserId() == user.getUserId()) {
-
-                User foundUser = userRepository.findById(id).map(u -> {
-                    u.setName(user.getName());
-                    u.setUserName(user.getUserName());
-                    u.setEmailAddress(user.getEmailAddress());
-                    u.setPassword(passwordEncoder.encode(user.getPassword()));
-                    u.setRoles(user.getRoles());
-                    return userRepository.save(u);
-                }).orElseThrow(() -> {
-                    throw new NoContentFoundException("User Not Found");
-                });
-//                return foundUser;
-            } else {
-                throw new NoContentFoundException("Unauthorized User");
-            }
-        }
+        User foundUser = userRepository.findById(id).map(u -> {
+            u.setName(user.getName());
+            u.setUserName(user.getUserName());
+            u.setEmailAddress(user.getEmailAddress());
+            u.setPassword(passwordEncoder.encode(user.getPassword()));
+            u.setRoles(user.getRoles());
+            return userRepository.save(u);
+        }).orElseThrow(() -> {
+            throw new NoContentFoundException("User Not Found");
+        });
+        return foundUser;
     }
+
 
     @Override
     public void delete(UUID id) {

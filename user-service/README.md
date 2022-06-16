@@ -25,9 +25,11 @@ To  start zookeeper run  bin/zookeeper-server-start.sh config/zookeeper.properti
 
 To start broker in new window run bin/kafka-server-start.sh config/server.properties
 
+TO Create a Topic bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+
 It will run on port 9092 
 
-To read the event run bin/kafka-console-consumer.sh --topic myTopicName --from-beginning --bootstrap-server localhost:9092
+To read the event run bin/kafka-console-consumer.sh --topic user --from-beginning --bootstrap-server localhost:9092
 
 ********Docker********
 
@@ -41,4 +43,11 @@ then run ==>  docker build --tag=user-service-image:latest .
 
 then run ==> docker run --name user-service -p9002:9002 user-service-image:latest 
 
+********Kubernet**********
+
+
+********GoogeCloud********
+Configure kubectl  command line access by running the following command:
+
+gcloud container clusters get-credentials sample-app --zone us-central1-c --project deep-span-353521
 

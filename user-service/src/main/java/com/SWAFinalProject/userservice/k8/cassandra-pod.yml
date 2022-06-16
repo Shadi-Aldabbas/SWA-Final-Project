@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cassandra-pod
+  labels:
+    name: cassandra-pod
+    app: cassandra-pod
+spec:
+  containers:
+    - name: cassandra
+      image: cassandra
+      ports:
+        - containerPort: 9042
+
+
+
+
+
+
+

@@ -28,19 +28,19 @@
        KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
        KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
        KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-   user-service:
-#     image: user-service
-     container_name: user-service
-#     restart: always
-     ports:
-       - "8080:8080"
-     build:
-       context: .
-       args:
-         JAR_FILE: /user-service.jar
-       dockerfile: "Dockerfile"
-     depends_on:
-       - mycassandra
+#   user-service:
+##     image: user-service
+#     container_name: user-service
+##     restart: always
+#     ports:
+#       - "8080:8080"
+#     build:
+#       context: .
+#       args:
+#         JAR_FILE: /user-service.jar
+#       dockerfile: "Dockerfile"
+#     depends_on:
+#       - mycassandra
 
 
 
