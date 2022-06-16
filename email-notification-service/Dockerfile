@@ -1,7 +1,7 @@
 FROM openjdk:17-jdk-slim-buster
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} email-notification-service-0.0.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","/email-notification-service-0.0.1-SNAPSHOT.jar"]
+COPY ${JAR_FILE} email-notification-service.jar
+ENTRYPOINT ["java","-jar","/email-notification-service.jar"]
 EXPOSE 587
 #
 #FROM openjdk:10-jre-slim
