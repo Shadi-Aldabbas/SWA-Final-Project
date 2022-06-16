@@ -29,7 +29,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     //    to create the keyspace if not exist
     @Override
     protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
-        CreateKeyspaceSpecification specification = CreateKeyspaceSpecification.createKeyspace(KEYSAPCE).ifNotExists()
+        CreateKeyspaceSpecification specification = CreateKeyspaceSpecification.createKeyspace(KEYSAPCE)
                 .with(KeyspaceOption.DURABLE_WRITES, true);
 
         return Arrays.asList(specification);
@@ -48,8 +48,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         return new String[]{"com.SWAFinalProject.userservice.entity"};
     }
 
-//    @Override
-//    protected String getContactPoints() {
-//        return "host.docker.internal";
-//    }
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
+    }
 }

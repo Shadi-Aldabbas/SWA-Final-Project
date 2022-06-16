@@ -50,4 +50,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         return new String[]{"com.finalproject.ansewerservice.model"};
     }
 
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
+    }
 }

@@ -1,0 +1,58 @@
+{
+	"info": {
+		"_postman_id": "08f8867e-6d71-42d6-83f5-1dbcfa83a6f6",
+		"name": "Voting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20268448"
+	},
+	"item": [
+		{
+			"name": "GetVoting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9004/api/voting/40f5fdsdf3-04ea-48fe-907d-8f86678eadd756g",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"api",
+						"voting",
+						"40f5fdsdf3-04ea-48fe-907d-8f86678eadd756g"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9004/api/voting",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"answer_id\":\"50f5fdsdf3-04ea-48fe-907d-8f86678eadd756g\",\r\n    \"user_id\":\"40f5fdasdsdf3-04ea-48fe-907d-8f86678eadd756g\",\r\n    \"vote\" : true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:9004/api/voting",
+					"host": [
+						"localhost"
+					],
+					"port": "9004",
+					"path": [
+						"api",
+						"voting"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

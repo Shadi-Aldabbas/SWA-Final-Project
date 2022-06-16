@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.SWAFinalProject</groupId>
 	<artifactId>email-notification-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>email-notification-service</name>
 	<description>email notification service</description>
 	<properties>

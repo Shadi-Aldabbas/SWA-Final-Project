@@ -1,5 +1,6 @@
 package com.finalproject.questionsservice.Config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification;
@@ -9,6 +10,7 @@ import org.springframework.data.cassandra.core.cql.keyspace.KeyspaceOption;
 import java.util.Arrays;
 import java.util.List;
 
+@Configuration
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
 
@@ -46,5 +48,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
 
-
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
+    }
 }
