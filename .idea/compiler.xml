@@ -7,11 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="answer-service" />
-        <module name="vote-service" />
-        <module name="user-service" />
-        <module name="email-notification-service" />
         <module name="question-service" />
-        <module name="Auth-Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
