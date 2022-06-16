@@ -13,4 +13,8 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
         return KEYSAPCE;
     }
 
+    @Override
+    protected String getContactPoints() {
+        return "host.docker.internal";
+    }
 }

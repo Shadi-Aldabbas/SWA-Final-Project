@@ -3,9 +3,6 @@ spring:
     cassandra:
       port: 9042
       contact-points: mycassandra
-      keyspace-name: mykeyspace
-      entity-base-package: com.SWAFinalProject.AuthService.entity
-      schema-action: create_if_not_exists
 
 app:
   jwtSecret : very-secret
