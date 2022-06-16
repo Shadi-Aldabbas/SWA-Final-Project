@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: answer-service-app
+  labels:
+    app: answer-service-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: answer-service-app
+  template:
+    metadata:
+      labels:
+        app: answer-service-app
+    spec:
+      containers:
+        - name: answer-service-app
+          image: answer-service:0.0.1
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 9001
+          # env:
+          # - name: EUREKA_ADDRESS  
+          #   valueFrom :
+          #     secretKeyRef :
+          #       name : mysecret
+          #       key :  eureka_Address
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: answer-service-svc
+spec:
+  ports:
+    - targetPort: 9001
+      port: 80
+  selector:
+    app: answer-service-app
