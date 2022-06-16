@@ -8,11 +8,11 @@ metadata:
 spec:
   type: loadBalancer
   ports:
-    - port: 9002
-      targetPort: 9002
+  - port: 9002
+    targetPort: 9002
   selector:
     name: user-service-pod
-    app: user-service-pod
+    app: user-service
 
 
 

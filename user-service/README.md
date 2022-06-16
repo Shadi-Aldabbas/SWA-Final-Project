@@ -47,7 +47,19 @@ then run ==> docker run --name user-service -p9002:9002 user-service-image:lates
 
 
 ********GoogeCloud********
+
+create Kubernate cluster 
 Configure kubectl  command line access by running the following command:
 
 gcloud container clusters get-credentials sample-app --zone us-central1-c --project deep-span-353521
+
+create pods and services 
+
+push it to github
+
+clone it in Google cloud cloud shell , open in the directory where the pods and services are created
+
+
+
+
 

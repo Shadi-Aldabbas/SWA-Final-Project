@@ -10,7 +10,7 @@ spec:
     - name: cassandra
       image: cassandra
       ports:
-        - containerPort: 9042
+      - containerPort: 9042
 
 
 
