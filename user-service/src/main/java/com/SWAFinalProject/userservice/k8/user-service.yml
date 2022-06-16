@@ -27,9 +27,9 @@ metadata:
 spec:
   selector:
     app: user-service-deployment
-#  type: ClusterIp
-  ports:
-      port: 80
+   type: ClusterIp
+   ports:
+      port: 9002
       targetPort: 9002
 
 
