@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.finalproject</groupId>
-	<artifactId>ansewer-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ansewer-service</name>
-	<description>This is anser-service microservice</description>
+	<artifactId>answer-service</artifactId>
+	<version>0.0.1</version>
+	<name>answer-service</name>
+	<description>This is answer microservice</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
