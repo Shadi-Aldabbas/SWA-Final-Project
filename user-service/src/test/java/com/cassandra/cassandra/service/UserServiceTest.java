@@ -12,36 +12,36 @@ import java.util.UUID;
 
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
+//@ExtendWith(MockitoExtension.class)
 
 public class UserServiceTest {
 
-    @Mock
-    private UserRepository userRepository;
-    private UserService userService;
-
-    @Test
-    void findAllUser() {
-        userService.findAll();
-        verify(userRepository).findAll();
-    }
-
-    @Test
-    void saveUser(User user) {
-        userService.saveUser(user);
-        verify(userRepository).save(user);
-    }
-
-    @Test
-    void findById(UUID userId) {
-        userService.findById(userId);
-        verify(userRepository).findById(userId);
-    }
-
-    @Test
-    void delete(UUID userId) {
-        userService.delete(userId);
-        verify(userRepository).delete(userService.findById(userId));
-    }
+//    @Mock
+//    private UserRepository userRepository;
+//    private UserService userService;
+//
+//    @Test
+//    void findAllUser() {
+//        userService.findAll();
+//        verify(userRepository).findAll();
+//    }
+//
+//    @Test
+//    void saveUser(User user) {
+//        userService.saveUser(user);
+//        verify(userRepository).save(user);
+//    }
+//
+//    @Test
+//    void findById(UUID userId) {
+//        userService.findById(userId);
+//        verify(userRepository).findById(userId);
+//    }
+//
+//    @Test
+//    void delete(UUID userId) {
+//        userService.delete(userId);
+//        verify(userRepository).delete(userService.findById(userId));
+//    }
 
 }
