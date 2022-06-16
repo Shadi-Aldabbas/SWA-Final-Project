@@ -29,7 +29,7 @@ metadata:
   name:  email-notification-service-svc
 spec:
   selector:
-    app:  email-notification-service-app
+    app:  email-notification-service
   ports:
     - port:  80
       targetPort:  8089
