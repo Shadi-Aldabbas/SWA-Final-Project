@@ -13,10 +13,10 @@ public class KafkaConsumer {
     @Autowired
     private EmailService emailService;
 
-    @KafkaListener(topics = "app", groupId = "group_id")
-    public void consume(String message) {
-        System.out.println("Consumed message: " + message);
-    }
+//    @KafkaListener(topics = "app", groupId = "group_id")
+//    public void consume(String message) {
+//        System.out.println("Consumed message: " + message);
+//    }
 
 
     @KafkaListener(topics = "user", containerFactory = "userKafkaListenerFactory")
