@@ -3,12 +3,16 @@ package com.finalproject.questionsservice.Helpers;
 import java.util.Date;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.finalproject.questionsservice.dto.AnswerDto;
 import com.finalproject.questionsservice.dto.TokenDto;
 import io.jsonwebtoken.*;
+
+
 public class JwtHelper {
 
-    private final String secret = "very-secret";
+
+    private String secret= "very-secret";
+
+
     private final long expirataion = 5 * 60 * 60 * 60;
 
     public String generateToken(String email, TokenDto tokenDto){

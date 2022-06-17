@@ -9,4 +9,4 @@ spring:
       entity-base-package: com.finalproject.ansewerservice.model
       schema-action: create_if_not_exists
 server:
-  port: 8081
+  port: 8084
