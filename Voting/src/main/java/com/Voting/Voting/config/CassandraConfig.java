@@ -48,6 +48,6 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
 
     @Override
     protected String getContactPoints() {
-        return "host.docker.internal";
+        return "34.116.66.244";
     }
 }

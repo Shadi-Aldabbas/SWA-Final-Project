@@ -7,11 +7,11 @@ metadata:
     app: user-service
 spec:
   ports:
-    - port: 9042
-      targetPort: 9042
+  - port: 9042
+    targetPort: 9042
   selector:
     name: cassandra-pod
-    app: cassandra-pod
+    app: user-service
 
 
 

@@ -6,6 +6,7 @@ import com.finalproject.questionsservice.Helpers.JwtHelper;
 import com.finalproject.questionsservice.Service.QuestionsService;
 import com.finalproject.questionsservice.dto.QuestionResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -26,11 +27,12 @@ public class QuestionsController {
     private RestTemplate restTemplate;
 
 
-    private String answerUrl = "http://localhost:8080/api/v1/answers";
+    @Value("${app.answer_service}")
+    private String answerUrl ;
 
     @PostMapping
     public ResponseEntity<?> save(@RequestBody Questions questions,@RequestHeader (name="Authorization") String token){
-
+        System.out.println(answerUrl);
         if(jwt.validateToken(token)){
             var loUser= jwt.getUserFromToken(token);
             if(loUser.getUserId() != null){

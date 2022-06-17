@@ -9,4 +9,4 @@ spring:
       entity-base-package: com.Voting.Voting.entity
       schema-action: create_if_not_exists
 server:
-  port: 8082
+  port: 8083
