@@ -9,9 +9,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 class AnsewerServiceApplicationTests {
 
 
-	@Test
-	void contextLoads() {
-
-	}
+//	@Test
+//	void contextLoads() {
+//
+//	}
 
 }
