@@ -1,9 +1,9 @@
 apiVersion: v1
-kind: Secret
+kind: ConfigMap
 metadata:
-  name: test
+  name: all-config
 data:
   userServiceDBHost : host.docker.internal
   userServiceDBPort : "9043"
   userServiceKafkaHost : host.docker.internal
-  userServiceKafkaPort : "9093"
+  userServiceKafkaPort : "192.168.1.240"

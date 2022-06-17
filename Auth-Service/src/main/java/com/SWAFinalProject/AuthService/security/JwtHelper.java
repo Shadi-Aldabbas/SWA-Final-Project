@@ -14,6 +14,7 @@ public class JwtHelper {
 
     @Value("${app.jwtSecret}")
     private String secret;
+
     @Value("${app.jwtExpiration}")
     private long expirataion;
 

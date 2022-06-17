@@ -29,7 +29,7 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     //    to create the keyspace if not exist
     @Override
     protected List<CreateKeyspaceSpecification> getKeyspaceCreations() {
-        CreateKeyspaceSpecification specification = CreateKeyspaceSpecification.createKeyspace(KEYSAPCE)
+        CreateKeyspaceSpecification specification = CreateKeyspaceSpecification.createKeyspace(KEYSAPCE).ifNotExists()
                 .with(KeyspaceOption.DURABLE_WRITES, true);
 
         return Arrays.asList(specification);

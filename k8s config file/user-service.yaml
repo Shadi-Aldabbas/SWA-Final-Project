@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service-app
+  labels:
+    app: user-service-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: user-service-app
+  template:
+    metadata:
+      labels:
+        app: user-service-app
+    spec:
+      containers:
+        - name: user-service-app
+          image: user-service:0.0.1
+          imagePullPolicy: Never
+          ports:
+          - containerPort: 9002
+          env:
+          - name: DBHost  
+            valueFrom :
+              configMapKeyRef :
+                name : all-config
+                key :  userServiceDBHost
+          - name: DBPort  
+            valueFrom :
+              configMapKeyRef :
+                name : all-config
+                key :  userServiceDBPort
+          - name: KafkaHost  
+            valueFrom :
+              configMapKeyRef :
+                name : all-config
+                key :  userServiceKafkaHost
+          - name: KafkaPort  
+            valueFrom :
+              configMapKeyRef :
+                name : all-config
+                key :  userServiceKafkaPort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service-svc
+spec:
+  ports:
+    - targetPort: 9002
+      port: 80
+      protocol: TCP
+  selector:
+    app: user-service-app
