@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: all-config
 data:
-  userServiceDBHost : host.docker.internal
+  userServiceDBHost : "host.docker.internal"
   userServiceDBPort : "9043"
-  userServiceKafkaHost : host.docker.internal
-  userServiceKafkaPort : "192.168.1.240"
+  userServiceKafkaHost : 192.168.1.240
+  userServiceKafkaPort : "9092"

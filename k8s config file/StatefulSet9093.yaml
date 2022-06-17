@@ -56,8 +56,6 @@ spec:
             value: "cassandra-0.cassandra.default.svc.cluster.local"
           - name: CASSANDRA_CLUSTER_NAME
             value: "K8Demo"
-          # - name: ENABLE_SASI_INDEXES
-          #   value: "true"
           - name: CASSANDRA_DC
             value: "DC1-K8Demo"
           - name: CASSANDRA_RACK
