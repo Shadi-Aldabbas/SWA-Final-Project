@@ -1,5 +1,7 @@
 package com.SWAFinalProject.userservice.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration;
 import org.springframework.data.cassandra.config.SchemaAction;
@@ -14,6 +16,7 @@ import java.util.List;
 public class CassandraConfig extends AbstractCassandraConfiguration {
 
     public static final String KEYSAPCE = "userKeySpace";
+
 
     @Override
     public String getKeyspaceName() {
@@ -49,7 +52,11 @@ public class CassandraConfig extends AbstractCassandraConfiguration {
     }
 
     @Override
+    protected int getPort() {
+        return 9043;
+    }
+    @Override
     protected String getContactPoints() {
-        return "host.docker.internal";
+        return "172.17.0.3";
     }
 }
